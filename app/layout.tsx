@@ -10,6 +10,19 @@ const inter = Yusei_Magic({ weight: "400", subsets: ["latin"] });
 export const metadata: Metadata = {
   title: 'amagami - ポートフォリオ',
   description: 'エンジニアとしてのスキル・プロジェクトをご紹介します。',
+  openGraph: {
+    title: 'amagami - ポートフォリオ',
+    description: 'エンジニアとしてのスキル・プロジェクトをご紹介します。',
+    images: '/images/meta/portfolioMetaDataImage.png',
+    url: 'https://www.amagami.xyz',
+    type: 'article',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'amagami - ポートフォリオ',
+    description: 'エンジニアとしてのスキル・プロジェクトをご紹介します。',
+    images: '/images/meta/portfolioMetaDataImage.png'
+  }
 };
 
 export default function RootLayout({
@@ -22,8 +35,8 @@ export default function RootLayout({
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
-          enableSystem={true}
+          defaultTheme="system"
+          enableSystem
           disableTransitionOnChange
         >
           <Navigation />

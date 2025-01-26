@@ -28,7 +28,7 @@ const formSchema = z.object({
 });
 
 export default function Home() {
-  const profileMessage = "ゲームやウェブシステムを制作し、\n世界中のユーザーに感動を届けています。";
+  const profileMessage = "ゲームやウェブシステムを制作し、\nほのぼのと世界中のユーザーに感動を届けています。";
 
   const profileIconSize: number = 200;
   const skillIconSize: number = 64;
@@ -86,7 +86,7 @@ export default function Home() {
             />
             <div className="text-center">
               <h1 className="text-4xl font-bold">amagami</h1>
-              <p className="mt-2 text-xl text-muted-foreground">ソフトウェアエンジニア</p>
+              <p className="mt-2 text-xl text-muted-foreground">フルスタックエンジニア</p>
             </div>
             <p className="max-w-2xl text-center text-muted-foreground whitespace-pre-wrap">
               {profileMessage}
@@ -123,7 +123,7 @@ export default function Home() {
             <div className="grid gap-4 mx-4 sm:grid-cols-12">
             <div className="col-span-12 sm:col-span-3">
               <div className="text-center sm:text-left mb-14 before:block before:w-24 before:h-3 before:mb-5 before:rounded-md before:mx-auto sm:before:mx-0 before:bg-blue-500">
-                <h3 className="text-3xl font-semibold">経歴</h3>
+                <h3 className="text-3xl">経歴</h3>
               </div>
             </div>
               <div className="relative col-span-12 px-4 space-y-6 sm:col-span-9">
@@ -133,7 +133,7 @@ export default function Home() {
                       key={career.id}
                       className="flex flex-col sm:relative sm:before:absolute sm:before:top-2 sm:before:w-4 sm:before:h-4 sm:before:rounded-full sm:before:left-[-35px] sm:before:z-[1] before:bg-blue-500">
                       <h3 className="text-xl font-semibold tracking-wide">{career.name}</h3>
-                      <p className="text-xs tracking-wide uppercase text-gray-600">{career.time} | {career.location}</p>
+                      <p className="text-xs tracking-wide uppercase text-gray-600">{career.time}{career.location}</p>
                       <p className="mt-3 whitespace-pre-wrap">{career.details}</p>
                     </div>
                   ))}
@@ -161,13 +161,13 @@ export default function Home() {
               ))}
             </div>
             <p className="text-center text-muted-foreground mt-12">
-              フロントエンドだけでなく、バックエンドやCICDの知識もございます。
+              フロントエンドだけでなく、バックエンドやCICDの知識も豊富です。
             </p>
           </div>
         </section>
 
         <section id="projects" className="py-20 flex flex-col items-center">
-          <h2 className="text-3xl font-bold text-center mb-2">Featured Projects</h2>
+          <h2 className="text-3xl font-bold text-center mb-2">Projects</h2>
           <p className="text-center text-muted-foreground mb-12">私が制作したプロジェクトについてご紹介します。</p>
           <div className="grid grid-cols-1 gap-6">
             {projects.sort((a, b) => (a.id - b.id)).map((project) => (
@@ -183,7 +183,7 @@ export default function Home() {
                 <p className="text-muted-foreground mb-4 whitespace-pre-wrap">{project.details}</p>
                 <div className="flex space-x-2 items-center">
                   <a href={project.link} target="_blank" rel="noopener noreferrer">
-                    <Button variant="outline" size="sm">Click here for more information →</Button>
+                    <Button variant="outline" size="sm">詳細はこちら →</Button>
                   </a>
                 </div>
               </Card>
@@ -193,7 +193,7 @@ export default function Home() {
 
         <section id="contact" className="container mx-auto px-4 py-20">
           <h2 className="text-3xl font-bold text-center mb-1">Contact Us</h2>
-          <p className="text-center text-muted-foreground mb-12">制作依頼等のご連絡をお待ちしております！</p>
+          <p className="text-center text-muted-foreground mb-12">制作依頼等のご連絡もお待ちしております！</p>
             <div className="max-w-3xl mx-auto">
               <Card className="p-8">
                 <Form {...form}>

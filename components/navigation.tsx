@@ -3,14 +3,14 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
-import { ThemeToggle } from './theme-toggle';
+import { ModeToggle } from './mode-toggle';
 import { Button } from './ui/button';
 import { cn } from '@/lib/utils';
 
 import { navigations } from '@/data/navigations';
 
 export function Navigation() {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <header className="fixed w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50">
@@ -29,12 +29,12 @@ export function Navigation() {
                   </Link>
                 </div>
               ))}
-              <ThemeToggle />
+              <ModeToggle />
             </nav>
         </div>
 
         <div className="md:hidden flex items-center space-x-4">
-          <ThemeToggle />
+          <ModeToggle />
           <Button
             variant="ghost"
             size="icon"
