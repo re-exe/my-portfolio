@@ -57,7 +57,7 @@ const projects = [
 export default function Work() {
     const [project, setProject] = useState(projects[0]);
 
-    const handleSlideChange = (swiper: Swiper) => {
+    const handleSlideChange = (swiper: typeof Swiper) => {
         const currentIndex = swiper.activeIndex;
         setProject(projects[currentIndex]);
     };
