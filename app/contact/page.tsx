@@ -59,10 +59,6 @@ export default function Contact() {
 
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    function formClear() {
-        form.reset();
-    }
-
     async function onSubmit(values: z.infer<typeof FormSchema>) {
         try {
             setIsSubmitting(true);
@@ -212,33 +208,21 @@ export default function Contact() {
                                 />
 
                                 {/* button */}
-                                <div className='flex justify-center items-center gap-5'>
-                                    <Toaster
-                                        toastOptions={{
-                                            className: 'bg-primary text-white',
-                                        }}
-                                        position="top-center"
-                                    />
-                                    <Button
-                                        type='reset'
-                                        variant='outline'
-                                        size='lg'
-                                        className='w-[50%]'
-                                        disabled={isSubmitting}
-                                        onClick={formClear}
-                                    >
-                                        form clear
-                                    </Button>
-                                    <Button
-                                        type='submit'
-                                        variant='default'
-                                        size='lg'
-                                        className='w-[50%]'
-                                        disabled={isSubmitting}
-                                    >
-                                        {isSubmitting ? 'Send now' : 'Send message'}
-                                    </Button>
-                                </div>
+                                <Toaster
+                                    toastOptions={{
+                                        className: 'bg-primary text-white',
+                                    }}
+                                    position="top-center"
+                                />
+                                <Button
+                                    type='submit'
+                                    variant='outline'
+                                    size='lg'
+                                    className='w-full flex flex-auto text-center'
+                                    disabled={isSubmitting}
+                                >
+                                    {isSubmitting ? 'Send now' : 'Send message'}
+                                </Button>
                             </form>
                         </Form>
                     </div>
