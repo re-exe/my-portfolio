@@ -1,49 +1,52 @@
-import './globals.css';
-import type { Metadata } from 'next';
-import { Yusei_Magic } from 'next/font/google';
-import { ThemeProvider } from '@/components/theme-provider';
-import { Toaster } from '@/components/ui/sonner';
-import { Navigation } from '@/components/navigation';
+import type { Metadata } from "next";
+import { JetBrains_Mono } from "next/font/google";
+import "./globals.css";
 
-const inter = Yusei_Magic({ weight: "400", subsets: ["latin"] });
+// components
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import PageTransition from "@/components/PageTransition";
+import StairTransition from "@/components/StairTransition";
+import MousePointer from "@/components/MousePointer";
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
+  variable: '--font-jetbrainsMono'
+});
 
 export const metadata: Metadata = {
-  title: 'amagami - ポートフォリオ',
-  description: 'エンジニアとしてのスキル・プロジェクトをご紹介します。',
+  title: "amagami.",
+  description: "Japanese developer portfolios.",
   openGraph: {
-    title: 'amagami - ポートフォリオ',
-    description: 'エンジニアとしてのスキル・プロジェクトをご紹介します。',
-    images: '/images/meta/portfolioMetaDataImage.png',
+    title: 'amagami.',
+    description: 'Japanese developer portfolios.',
+    images: '/assets/meta-image.png',
     url: 'https://www.amagami.xyz',
     type: 'article',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'amagami - ポートフォリオ',
-    description: 'エンジニアとしてのスキル・プロジェクトをご紹介します。',
-    images: '/images/meta/portfolioMetaDataImage.png'
+    title: 'amagami.',
+    description: 'Japanese developer portfolios.',
+    images: '/assets/meta-image.png'
   }
 };
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html lang="ja" suppressHydrationWarning className='scroll-smooth'>
-      <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Navigation />
-          {children}
-          <Toaster />
-        </ThemeProvider>
-      </body>
+    <html lang="en">
+      <body className={jetbrainsMono.variable}>
+        <Header />
+        <StairTransition />
+        <MousePointer />
+        <PageTransition>{children}</PageTransition>
+        <Footer />
+        </body>
     </html>
   );
 }

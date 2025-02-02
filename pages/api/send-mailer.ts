@@ -2,11 +2,13 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import nodemailer from 'nodemailer';
 import * as z from 'zod';
 
-const formSchema = z.object({
-    name: z.string().min(1, "お名前を入力してください。"),
-    email: z.string().email("有効なメールアドレスを入力してください。"),
-    subject: z.string().min(1, "お問い合わせ項目を選択してください。"),
-    message: z.string().min(1, "お問い合わせ内容を入力してください。"),
+const FormSchema = z.object({
+    firstname: z.string().min(1, 'Please enter your first name.'),
+    lastname: z.string().min(1, 'Please enter your last name.'),
+    email: z.string().email('Please enter a valid Email.'),
+    phone: z.string().min(6, 'Please enter your phone number.'),
+    subject: z.string().min(1, 'Please enter the subject.'),
+    message: z.string().min(1, 'Please enter your message.'),
 });
 
 export default async function handler(request: NextApiRequest, response: NextApiResponse) {
@@ -15,32 +17,33 @@ export default async function handler(request: NextApiRequest, response: NextApi
     }
 
     try {
-        const values = formSchema.parse(request.body);
+        const values = FormSchema.parse(request.body);
 
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: process.env.GMAIL_USER,
+                user: process.env.GMAIL_ADDRESS,
                 pass: process.env.GMAIL_PASSWORD
             },
         });
 
         const mailOptions = {
             from: values.email,
-            to: process.env.GMAIL_USER,
+            to: process.env.GMAIL_ADDRESS,
             subject: `Portfolioからお問い合わせ: ${values.subject}`,
             text: 
-                `名前: ${values.name}\n`
+                `名前: ${values.firstname} ${values.lastname}\n`
                 + `メールアドレス: ${values.email}\n`
+                + `電話番号: ${values.phone}\n`
                 + `項目: ${values.subject}\n`
                 + `お問い合わせ内容: ${values.message}`,
         };
 
         await transporter.sendMail(mailOptions);
 
-        response.status(200).json({ message: 'メールを送信しました。' })
+        response.status(200).json({ message: 'Email sent.' })
     } catch (error: unknown) {
-        console.error("メール送信エラー:", error);
-        response.status(500).json({ message: 'メールの送信に失敗しました。' });
+        console.error("Send Error:", error);
+        response.status(500).json({ message: 'Send failed.' });
     }
 }
